@@ -4,12 +4,12 @@ const qs = require('querystring');
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 const TIE = require('@artificialsolutions/tie-api-client');
 const {
-  TENEO_ENGINE_URL,
-  WEBHOOK_FOR_TWILIO,
-  FIRST_INPUT_FOR_TENEO,
-  LANGUAGE_STT,
-  LANGUAGE_TTS,
-  PORT
+	TENEO_ENGINE_URL,
+	WEBHOOK_FOR_TWILIO,
+	FIRST_INPUT_FOR_TENEO,
+	LANGUAGE_STT,
+	LANGUAGE_TTS,
+	PORT
 } = process.env;
 const port = PORT || 1337;
 const teneoApi = TIE.init(TENEO_ENGINE_URL);
@@ -23,22 +23,22 @@ const language_TTS = LANGUAGE_TTS || 'en-GB';
 
 function SessionHandler() {
 
-  var sessionMap = new Map();
-  
-  return {
-    getSession: (userId) =>  new Promise((resolve, reject) => {	
-		if(sessionMap.size>0){
-			resolve(sessionMap.get(userId));
-		}
-		else{
-			resolve("")
-		}
-	}),
-    setSession: (userId, sessionId) => new Promise((resolve, reject) =>{
-			sessionMap.set(userId,sessionId);
-		resolve();
-	})
-  };
+	var sessionMap = new Map();
+
+	return {
+		getSession: (userId) => new Promise((resolve, reject) => {
+			if (sessionMap.size > 0) {
+				resolve(sessionMap.get(userId));
+			}
+			else {
+				resolve("")
+			}
+		}),
+		setSession: (userId, sessionId) => new Promise((resolve, reject) => {
+			sessionMap.set(userId, sessionId);
+			resolve();
+		})
+	};
 }
 
 /***
@@ -53,7 +53,7 @@ var server = http.createServer((req, res) => {
 	});
 
 	req.on('end', function () {
-	
+
 		var post = qs.parse(body);
 		var textToSend = '';
 
@@ -71,7 +71,7 @@ var server = http.createServer((req, res) => {
 
 		console.log("get teneoSessionId: "); console.log(teneoSessionId);
 
-		teneoApi.sendInput(teneoSessionId, {text: textToSend, channel: 'twilio', phoneNumber: phoneNumber}).then(teneoResponse => {
+		teneoApi.sendInput(teneoSessionId, { text: textToSend, channel: 'twilio', phoneNumber: phoneNumber }).then(teneoResponse => {
 
 			sessionHandler.setSession(callId, teneoResponse.sessionId);
 
@@ -83,10 +83,10 @@ var server = http.createServer((req, res) => {
 				customVocabulary = teneoResponse.output.parameters.twilio_customVocabulary;
 			}
 
-			if  (teneoResponse.output.parameters.twilio_endCall == 'true') { // If the output parameter 'twilio_endcall' exists, the call will be ended
+			if (teneoResponse.output.parameters.twilio_endCall == 'true') { // If the output parameter 'twilio_endcall' exists, the call will be ended
 				response = twiml.hangup();
 			} else {
-				console.log("Custom vocab: "+teneoResponse.output.parameters.twilio_customVocabulary);
+				console.log("Custom vocab: " + teneoResponse.output.parameters.twilio_customVocabulary);
 				response = twiml.gather({
 					language: language_STT,
 					hints: customVocabulary,
@@ -103,11 +103,11 @@ var server = http.createServer((req, res) => {
 				response.say(teneoResponse.output.text);
 			}
 
-			console.log(chalk.yellow('Caller ID: '+callId));
+			console.log(chalk.yellow('Caller ID: ' + callId));
 			if (textToSend)
-				console.log(chalk.green('Captured Input: '+textToSend));
+				console.log(chalk.green('Captured Input: ' + textToSend));
 			if (teneoResponse.output.text)
-				console.log(chalk.blue('Spoken Output: '+teneoResponse.output.text));
+				console.log(chalk.blue('Spoken Output: ' + teneoResponse.output.text));
 
 			res.writeHead(200, { 'Content-Type': 'text/xml' });
 			res.end(twiml.toString());
@@ -118,4 +118,4 @@ var server = http.createServer((req, res) => {
 
 }).listen(port);
 
-console.log(chalk.bold('Twilio will send messages to this server on: '+WEBHOOK_FOR_TWILIO+':'+port));
+console.log(chalk.bold('Twilio will send messages to this server on: ' + WEBHOOK_FOR_TWILIO + ':' + port));
