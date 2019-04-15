@@ -1,5 +1,4 @@
 const http = require('http');
-const chalk = require('chalk');
 const qs = require('querystring');
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 const TIE = require('@artificialsolutions/tie-api-client');
@@ -103,12 +102,13 @@ var server = http.createServer((req, res) => {
 				response.say(teneoResponse.output.text);
 			}
 
-			console.log(chalk.yellow('Caller ID: ' + callId));
-			if (textToSend)
-				console.log(chalk.green('Captured Input: ' + textToSend));
-			if (teneoResponse.output.text)
-				console.log(chalk.blue('Spoken Output: ' + teneoResponse.output.text));
-
+			console.log('Caller ID: ' + callId);
+			if (textToSend){
+				console.log('Captured Input: ' + textToSend);
+			}
+			if (teneoResponse.output.text){
+				console.log('Spoken Output: ' + teneoResponse.output.text);
+			}
 			res.writeHead(200, { 'Content-Type': 'text/xml' });
 			res.end(twiml.toString());
 
@@ -118,4 +118,4 @@ var server = http.createServer((req, res) => {
 
 }).listen(port);
 
-console.log(chalk.bold('Twilio will send messages to this server on: ' + WEBHOOK_FOR_TWILIO + ':' + port));
+console.log('Twilio will send messages to this server on: ' + WEBHOOK_FOR_TWILIO + ':' + port);
