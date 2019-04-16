@@ -25,18 +25,17 @@ function SessionHandler() {
 	var sessionMap = new Map();
 
 	return {
-		getSession: (userId) => new Promise((resolve, reject) => {
+		getSession: (userId) => {
 			if (sessionMap.size > 0) {
-				resolve(sessionMap.get(userId));
+				return sessionMap.get(userId);
 			}
 			else {
-				resolve("")
+				return "";
 			}
-		}),
-		setSession: (userId, sessionId) => new Promise((resolve, reject) => {
-			sessionMap.set(userId, sessionId);
-			resolve();
-		})
+		},
+		setSession: (userId, sessionId) => {
+			sessionMap.set(userId, sessionId)
+		}
 	};
 }
 
@@ -67,8 +66,6 @@ var server = http.createServer((req, res) => {
 		var callId = post.CallSid;
 		var phoneNumber = post.Caller;
 		var teneoSessionId = sessionHandler.getSession(callId);
-
-		console.log("get teneoSessionId: "); console.log(teneoSessionId);
 
 		teneoApi.sendInput(teneoSessionId, { text: textToSend, channel: 'twilio', phoneNumber: phoneNumber }).then(teneoResponse => {
 
@@ -103,10 +100,10 @@ var server = http.createServer((req, res) => {
 			}
 
 			console.log('Caller ID: ' + callId);
-			if (textToSend){
+			if (textToSend) {
 				console.log('Captured Input: ' + textToSend);
 			}
-			if (teneoResponse.output.text){
+			if (teneoResponse.output.text) {
 				console.log('Spoken Output: ' + teneoResponse.output.text);
 			}
 			res.writeHead(200, { 'Content-Type': 'text/xml' });
