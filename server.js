@@ -17,18 +17,8 @@ const firstInput = FIRST_INPUT_FOR_TENEO || '';
 const language_STT = LANGUAGE_STT || 'en-GB';
 const language_TTS = LANGUAGE_TTS || 'en-GB';
 
-
-// initialise session handler, to store mapping between slack 'channel' and engine session
+// initialise session handler, to store mapping between twillio CallSid and engine session id
 const sessionHandler = SessionHandler();
-
-function createTwilioMessage(phoneNumber, textToSend) {
-  const message = {};
-  message.text = textToSend;
-  message.channel = 'twilio'
-  message.phoneNumber = phoneNumber;
-  return message;
-}
-
 
 // initialize an Express application
 const app = express();
@@ -52,7 +42,6 @@ function handleTwilioMessages(sessionHandler) {
 
       var post = qs.parse(body);
       var callId = post.CallSid;
-      var phoneNumber = post.Caller;
       var textToSend = '';
 
       if (post.CallStatus == 'ringing') { // If first input of call, send default input to Teneo (blank here)
@@ -64,7 +53,7 @@ function handleTwilioMessages(sessionHandler) {
       }
 
       const teneoSessionId = sessionHandler.getSession(callId);
-      const teneoResponse = await teneoApi.sendInput(teneoSessionId, createTwilioMessage(phoneNumber, textToSend));
+      const teneoResponse = await teneoApi.sendInput(teneoSessionId, { 'text': textToSend });
 
       sessionHandler.setSession(callId, teneoResponse.sessionId);
 
@@ -103,12 +92,7 @@ function sendTwilioMessage(teneoResponse, res) {
       input: 'speech',
       speechTimeout: 1
     });
-    /*
-    response.say({
-        voice: 'woman',
-        language: language_TTS
-    }, teneoResponse.output.text);
-    */
+
     response.say(teneoResponse.output.text);
   }
 
