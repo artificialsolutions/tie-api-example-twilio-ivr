@@ -18,29 +18,6 @@ const language_STT = LANGUAGE_STT || 'en-GB';
 const language_TTS = LANGUAGE_TTS || 'en-GB';
 
 
-/***
- * SESSION HANDLER
- ***/
-
-function SessionHandler() {
-
-    var sessionMap = new Map();
-
-    return {
-        getSession: (userId) => {
-            if (sessionMap.size > 0) {
-                return sessionMap.get(userId);
-            }
-            else {
-                return "";
-            }
-        },
-        setSession: (userId, sessionId) => {
-            sessionMap.set(userId, sessionId)
-        }
-    };
-}
-
 // initialise session handler, to store mapping between slack 'channel' and engine session
 const sessionHandler = SessionHandler();
 
@@ -138,6 +115,54 @@ function sendTwilioMessage(teneoResponse, res) {
     res.writeHead(200, { 'Content-Type': 'text/xml' });
     res.end(twiml.toString());
 }
+
+
+/***
+ * SESSION HANDLER
+ ***/
+
+function SessionHandler() {
+
+	var sessionMap = new Map();
+
+	return {
+			getSession: (userId) => {
+					if (sessionMap.size > 0) {
+							return sessionMap.get(userId);
+					}
+					else {
+							return "";
+					}
+			},
+			setSession: (userId, sessionId) => {
+					sessionMap.set(userId, sessionId)
+			}
+	};
+}
+
+/***
+ * SESSION HANDLER
+ ***/
+
+function SessionHandler() {
+
+	var sessionMap = new Map();
+
+	return {
+			getSession: (userId) => {
+					if (sessionMap.size > 0) {
+							return sessionMap.get(userId);
+					}
+					else {
+							return "";
+					}
+			},
+			setSession: (userId, sessionId) => {
+					sessionMap.set(userId, sessionId)
+			}
+	};
+}
+
 
 // start the express application
 http.createServer(app).listen(port, () => {
