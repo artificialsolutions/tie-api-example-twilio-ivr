@@ -6,7 +6,7 @@ This node.js example connector allows you to make your Teneo bot available on Tw
 ### Https
 Twilio API requires that the connector is available via https. Ngrok is recommended for this.
 
-1. Make sure your connector is available via https. When running locally you can for example use [ngrok.com](https://ngrok.com) for this. Run the connector on port 1337 by default.
+1. Make sure your connector is available via https. When running locally you can for example use [ngrok](https://ngrok.com) for this. Run the connector on port 1337 by default.
     ```
     ngrok http 1337
     ```
