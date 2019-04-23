@@ -10,14 +10,14 @@ Twilio API requires that the connector is available via https. Ngrok is recommen
     ```
     ngrok http 1337
     ```
-2. Running the command above will display a public Https URL, copy it, and it as a Webhook URL for the following steps.
+2. Running the command above will display a public Https URL, copy it, and use it as a Webhook URL for the following steps.
 
 
 ## Running the connector locally
 ### Twilio Setup
 
 1. Setup a free Twilio account, which comes with free credit money you can spend on buying a number:
-    [Try-Twilio] (https://www.twilio.com/try-twilio)
+    [Try-Twilio](https://www.twilio.com/try-twilio)
 2. Go to the left pane menu and click the "Programmable Voice" phone icon, then click "Buy a number".
 3. On the popup window, select the "Voice" checkbox and click "Search'.
 4. Buy a local number of your choosing. The free credit will pay for it.
