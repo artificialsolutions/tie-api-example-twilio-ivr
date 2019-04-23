@@ -24,7 +24,7 @@ Twilio API requires that the connector is available via https. Ngrok is recommen
 5. Click on submenu "Numbers"
 6. Click on "Manage Numbers"
 7. Click your number to configure
-8. Under "Voice & Fax" -> "A call comes in" set the webhook to https://<your ngrok public URL>
+8. Under "Voice & Fax" -> "A call comes in" set the webhook to `https://<your ngrok public URL>`
 
 
 ### Connector Setup Instructions
