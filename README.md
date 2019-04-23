@@ -10,7 +10,7 @@ Twilio API requires that the connector is available via https. Ngrok is recommen
     ```
     ngrok http 1337
     ```
-2. Running the command above will display a public Https URL, copy it, and use it as a Webhook URL for the following steps.
+2. Running the command above will display a public https URL, copy it, we will use it as a `Webhook URL` for the following steps.
 
 
 ## Running the connector locally
@@ -23,16 +23,22 @@ Twilio API requires that the connector is available via https. Ngrok is recommen
 5. Click on submenu "Numbers"
 6. Click on "Manage Numbers"
 7. Click your number to configure
-8. Under "Voice & Fax" -> "A call comes in" set the webhook to `https://<your ngrok public URL>`
+8. Under "Voice & Fax" -> "A call comes in" set the webhook to your `Webhook URL` you copied earlier
 
 
 ### Connector Setup Instructions
 
-1. Download or clone the connector source code from [Github](https://github.com/artificialsolutions/tie-api-example-twilio-ivr).
-2. Install dependencies by running `npm install` in the folder where you stored the source.
+1. Download or clone the connector source code:
+    ```
+    git clone https://github.com/artificialsolutions/tie-api-example-twilio-ivr.git
+    ```
+2. Install dependencies by running the following command in the folder where you stored the source:
+    ```
+    npm install
+    ``` 
 3. Start the connector with the following command (replacing the environment variables with the appropriate values):
     ```
     WEBHOOK_FOR_TWILIO=<a_public_webhook_URL> TENEO_ENGINE_URL=<your_engine_url> node server.js
     ```
 
-Call the Twilio number with your phone, and speak to your bot.
+Call the Twilio number with your phone, and speak to your bot!
