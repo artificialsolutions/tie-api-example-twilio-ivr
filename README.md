@@ -42,3 +42,17 @@ Twilio API requires that the connector is available via https. Ngrok is recommen
     ```
 
 Call the Twilio number with your phone, and speak to your bot!
+
+
+## Running the connector on Heroku
+
+Click the button below to deploy the connector to Heroku:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg?classes=noborder)](https://heroku.com/deploy?template=https://github.com/artificialsolutions/tie-api-example-twilio-ivr)
+
+In the 'Config Vars' section, add the following:
+* **WEBHOOK_FOR_TWILIO:** The url of this heroku app - `https:/[your heroku app name].herokuapp.com`
+* **TENEO_ENGINE_URL:** The engine url
+
+
+Next, follow the Twilio Setup instructions above. Make sure that in the step 8 you set the Webhook URL to the url of the Heroku app.
