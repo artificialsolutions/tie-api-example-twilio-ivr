@@ -71,7 +71,7 @@ function handleTwilioMessages(sessionHandler) {
       }
       console.log(`userInput: ${userInput}`);
 
-      // send input to engine and retreive response
+      // send input to engine using stored sessionid and retreive response
       const teneoResponse = await teneoApi.sendInput(teneoSessionId, { 'text': userInput });
       console.log(`teneoResponse: ${teneoResponse.output.text}`)
 
