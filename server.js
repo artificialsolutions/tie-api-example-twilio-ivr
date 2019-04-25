@@ -28,7 +28,7 @@ const {
 const port = PORT || 1337;
 const teneoApi = TIE.init(TENEO_ENGINE_URL);
 const language_STT = LANGUAGE_STT || 'en';
-const language_TTS = LANGUAGE_TTS || 'en';
+const language_TTS = LANGUAGE_TTS || 'en-US';
 
 // initialise session handler, to store mapping between twillio CallSid and engine session id
 const sessionHandler = SessionHandler();
