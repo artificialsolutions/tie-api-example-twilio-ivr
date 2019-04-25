@@ -64,7 +64,7 @@ Next, follow the Twilio Setup instructions above. Make sure that in the step 8 y
 The connector will check for the following output parameters in an output to send specific data to Twillo:
 
 ### twilio_customVocabulary
-If the output parameter `twilio_customVocabulary` exists, it will be used for custom vocabulary understanding or hints. The value should be a string. You may provide up to 500 words or phrases, separating each entry with a comma. Your hints may be up to 100 characters each, and you should separate each word in a phrase with a space For more details: [https://www.twilio.com/docs/voice/twiml/gather#hints](https://www.twilio.com/docs/voice/twiml/gather#hints)
+If the output parameter `twilio_customVocabulary` exists, it will be used for custom vocabulary understanding or hints. The value should be a string. You may provide up to 500 words or phrases, separating each entry with a comma. Your hints may be up to 100 characters each, and you should separate each word in a phrase with a space. For more details: [https://www.twilio.com/docs/voice/twiml/gather#hints](https://www.twilio.com/docs/voice/twiml/gather#hints)
 
 ### twilio_endCall
 If the output parameter `twilio_endCall` exists, the call will be ended.
