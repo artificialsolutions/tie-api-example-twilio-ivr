@@ -7,7 +7,7 @@
         "Teneo",
         "Voice"
     ],
-    "repository": "https://github.com/pomegran/twilio-voice-teneo/",
+    "repository": "https://github.com/artificialsolutions/tie-api-example-twilio-ivr",
     "env": {    
         "TENEO_ENGINE_URL": {
             "description": "Please input your Teneo Engine URL. https://some.engine/instance/",
