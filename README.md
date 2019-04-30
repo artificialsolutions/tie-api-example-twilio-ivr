@@ -39,9 +39,9 @@ When using ngrok, make the connector available via https:
 1. Setup a free [Twilio](https://www.twilio.com/try-twilio) account, which comes with free credit money you can spend on buying a number.
 2. Go to the left pane menu and click the **Programmable Voice** phone icon, then from the submenu choose **Numbers** and click the **Get a number** button.
 3. Follow the instruction to obtain your phone number (the instruction may differ per region).
-6. Click on "Manage Numbers".
-7. Click your number so you can configure it.
-8. Under "Voice & Fax" -> "A call comes in" set the webhook to your `Webhook URL` you copied earlier.
+4. Click on "Manage Numbers".
+5. Click your number so you can configure it.
+6. Under "Voice & Fax" -> "A call comes in" set the webhook to your `Webhook URL` you copied earlier.
 
 
 That's it! Call your Twilio number with your phone, and speak to your bot!
@@ -57,7 +57,7 @@ In the 'Config Vars' section, add the following:
 * **TENEO_ENGINE_URL:** The engine url
 
 
-Next, follow the Twilio Setup instructions above. Make sure that in the step 8 you set the Webhook URL to the url of the Heroku app.
+Next, follow the Twilio Setup instructions above. Make sure that in the step 6 you set the Webhook URL to the url of the Heroku app.
 
 
 ## Engine output parameters
