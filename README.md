@@ -56,6 +56,10 @@ Click the button below to deploy the connector to Heroku:
 In the 'Config Vars' section, add the following:
 * **TENEO_ENGINE_URL:** The engine url
 
+Optionally, you can also add the following parameters:
+* **LANGUAGE_STT:** Speech to Text language. Defaults to en-US if not provided. For a list of supported languages, see: [https://www.twilio.com/docs/voice/twiml/gather#languagetags](https://www.twilio.com/docs/voice/twiml/gather#languagetags). Note that your Teneo solution should match the chosen language as well.
+* **LANGUAGE_TTS:** Text to Speech language. Defaults to en-US if not provided. For a list of supported languages, see the [Twilio text-to-speech console](https://www.twilio.com/console/voice/twiml/text-to-speech). Note that your Teneo solution should match the chosen language as well.
+
 
 Next, follow the Twilio Setup instructions above. Make sure that in the step 6 you set the Webhook URL to the url of the Heroku app.
 
