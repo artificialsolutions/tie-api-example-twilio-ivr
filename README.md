@@ -24,6 +24,7 @@ Your bot needs to be published and you need to know the engine url.
     ```
     TENEO_ENGINE_URL=<your_engine_url> node server.js
     ```
+    Optionally you can add the environment variables `LANGUAGE_STT` and `LANGUAGE_TTS` to set the Speech to Text and Text to Speech language. The code defaults to 'en-US' for both.
 
 ### Make the connector available via https
 When using ngrok, make the connector available via https:
