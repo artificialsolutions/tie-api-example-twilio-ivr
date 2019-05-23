@@ -50,7 +50,7 @@ Next, follow the Twilio Setup instructions below. Make sure that in the step 6 y
 3. Follow the instructions to obtain your phone number (the instructions may differ per region).
 4. Click on "Manage Numbers".
 5. Click your number so you can configure it.
-6. Under "Voice & Fax" -> "A call comes in" set the webhook to your `Webhook URL` you copied earlier.
+6. Under "Voice & Fax" -> "A call comes in" set the webhook to the `Webhook URL` that you copied earlier.
 
 
 That's it! Call your Twilio number with your phone, and speak to your bot!
