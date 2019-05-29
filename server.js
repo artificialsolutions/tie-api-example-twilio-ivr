@@ -27,8 +27,8 @@ const {
 } = process.env;
 const port = PORT || 1337;
 const teneoApi = TIE.init(TENEO_ENGINE_URL);
-const language_STT = LANGUAGE_STT || 'en-US';
-const language_TTS = LANGUAGE_TTS || 'en-US';
+const language_STT = LANGUAGE_STT || 'en-US'; // See: https://www.twilio.com/docs/voice/twiml/gather#languagetags
+const language_TTS = LANGUAGE_TTS || 'Polly.Joanna'; // See: https://www.twilio.com/docs/voice/twiml/say/text-speech#amazon-polly
 
 // initialise session handler, to store mapping between twillio CallSid and engine session id
 const sessionHandler = SessionHandler();
@@ -99,6 +99,13 @@ function sendTwilioMessage(teneoResponse, res) {
     console.log(`customVocabulary: ${customVocabulary}`);
   }
 
+  // If the output parameter 'twilio_customTimout' exists, it will be used to set a custom speech timeout.
+  // Otherwise end of speech detection will be set to automatic
+  var customTimeout = 'auto';
+  if (teneoResponse.output.parameters.twilio_customTimeout) {
+    customTimeout = teneoResponse.output.parameters.twilio_customTimeout;
+  }
+
   // If the output parameter 'twilio_endCall' exists, the call will be ended
   if (teneoResponse.output.parameters.twilio_endCall == 'true') {
     response = twiml.hangup();
@@ -107,12 +114,11 @@ function sendTwilioMessage(teneoResponse, res) {
       language: language_STT,
       hints: customVocabulary,
       input: 'speech',
-      speechTimeout: 'auto'
+      speechTimeout: customTimeout
     });
 
     response.say({
-      language: language_TTS,
-      voice: 'woman'
+      voice: language_TTS
     }, teneoResponse.output.text);
   }
 
