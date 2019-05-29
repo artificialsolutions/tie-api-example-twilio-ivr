@@ -19,6 +19,8 @@ const express = require('express');
 const qs = require('querystring');
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 const TIE = require('@artificialsolutions/tie-api-client');
+const dotenv = require('dotenv');
+dotenv.config();
 const {
   TENEO_ENGINE_URL,
   LANGUAGE_STT,
@@ -29,6 +31,9 @@ const port = PORT || 1337;
 const teneoApi = TIE.init(TENEO_ENGINE_URL);
 const language_STT = LANGUAGE_STT || 'en-US'; // See: https://www.twilio.com/docs/voice/twiml/gather#languagetags
 const language_TTS = LANGUAGE_TTS || 'Polly.Joanna'; // See: https://www.twilio.com/docs/voice/twiml/say/text-speech#amazon-polly
+
+console.log("LANGUAGE_STT: " + LANGUAGE_STT)
+console.log("LANGUAGE_TTS: " + LANGUAGE_TTS)
 
 // initialise session handler, to store mapping between twillio CallSid and engine session id
 const sessionHandler = SessionHandler();
