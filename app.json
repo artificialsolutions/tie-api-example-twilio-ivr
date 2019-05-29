@@ -14,11 +14,11 @@
             "required":true
         }, 
         "LANGUAGE_STT": {
-            "description": "Please enter your Twilio Language for voice recognition (STT).  Defaults to 'en-US'.  List is here: https://www.twilio.com/docs/voice/twiml/gather#languagetags",
+            "description": "Please enter your Twilio Language for voice recognition (STT).  Defaults to 'en-US'. List is here: https://www.twilio.com/docs/voice/twiml/gather#languagetags",
             "required":false
         },        
         "LANGUAGE_TTS": {
-            "description": "Please enter your Twilio Language for spoken voice (TTS).  Defaults to 'en-US'.",
+            "description": "Please enter your Twilio Language for spoken voice (TTS).  Defaults to 'Polly.Joanna'. List is here: https://www.twilio.com/docs/voice/twiml/say/text-speech#amazon-polly",
             "required":false
         }
     }
