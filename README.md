@@ -38,11 +38,16 @@ If you want to run the connector locally, follow the steps below. If you have al
     ```
     npm install
     ``` 
-3. Start the connector with the following command (replacing the environment variable with the appropriate value):
+3. Create a `.env` file in the folder where you stored the source and add the URL of your engine. Optionally you can also specify the langauges for Speech To Text and Text To Speech:
     ```
-    TENEO_ENGINE_URL=<your_engine_url> node server.js
+    TENEO_ENGINE_URL=<your_engine_url>
+    LANGUAGE_TTS=Polly.Joanna
+    LANGUAGE_STT=en-US
     ```
-    Optionally you can add the environment variables <mark>LANGUAGE_STT</mark> and <mark>LANGUAGE_TTS</mark> to set the Speech to Text and Text to Speech language. The code defaults to 'en-US' for both.
+4. Start the connector:
+    ```
+    node server.js
+    ```
 
 Next, we need to make the connector available via https. We'll use [ngrok](https://ngrok.com) for this.
 
