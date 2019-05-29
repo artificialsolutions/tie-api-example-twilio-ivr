@@ -78,4 +78,4 @@ If the output parameter `twilio_customVocabulary` exists, it will be used for cu
 By default, end of speech is detected automatically. The `twilio_customTimeout` output parameter allows you to set a custom timeout. This can come in handy when you ask the user for a number for example. In that case you may prefer a longer end of speech detection timeout.
 
 ### twilio_endCall
-If the output parameter `twilio_endCall` exists, the call will be ended.
+If the output parameter `twilio_endCall` with the value `true` exists, the call will be ended.
