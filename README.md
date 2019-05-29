@@ -10,7 +10,7 @@ When running the connector locally, making the connector available via https is 
 Your bot needs to be published and you need to know the engine url.
 
 ## Setup instructions
-Below you will find two ways to run the this connector. The first way is by [running the connector on Heroku](#running-the-connector-locally). This is the easiest to get the connector running for non-developers since it does not require you to run node.js or download or modify any code.
+Below you will find two ways to run the this connector. The first way is by [running the connector on Heroku](#running-the-connector-on-heroku). This is the easiest to get the connector running for non-developers since it does not require you to run node.js or download or modify any code.
 
 The second way is to [run the connector locally](#running-the-connector-locally) or to deploy it on a server of your choice. This preferred if you're familiar with node.js development and want to have a closer look at the code and plan to enhance or modify it.
 
