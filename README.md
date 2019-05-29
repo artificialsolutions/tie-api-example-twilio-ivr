@@ -41,8 +41,8 @@ If you want to run the connector locally, follow the steps below. If you have al
 3. Create a `.env` file in the folder where you stored the source and add the URL of your engine. Optionally you can also specify the langauges for Speech To Text and Text To Speech:
     ```
     TENEO_ENGINE_URL=<your_engine_url>
-    LANGUAGE_TTS=Polly.Joanna
     LANGUAGE_STT=en-US
+    LANGUAGE_TTS=Polly.Joanna
     ```
 4. Start the connector:
     ```
