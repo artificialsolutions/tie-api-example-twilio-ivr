@@ -69,15 +69,15 @@ function handleTwilioMessages(sessionHandler) {
       // check if we have stored an engine sessionid for this caller
       const teneoSessionId = sessionHandler.getSession(callSid);
 	  
-	  // PABO: check for Digits field
-	  let digitsCaptured = '';
-	  try {
-		  digitsCaptured = String(post.Digits);
-	  } catch (error) {
-		  // no need to do anything, but you could do this:
-		  console.error(error);
-		  console.log('No digits captured');
-	  }
+      // check for Digits field
+      let digitsCaptured = '';
+      try {
+        digitsCaptured = String(post.Digits);
+      } catch (error) {
+        // no need to do anything, but you could do this:
+        console.error(error);
+        console.log('No digits captured');
+      }
 
       // get transcipt of user's spoken response
       let userInput = '';
@@ -140,10 +140,10 @@ function sendTwilioMessage(teneoResponse, res) {
     response = twiml.gather({
       language: language_STT,
       hints: customVocabulary,
-	  input: customInputType,
+	    input: customInputType,
       speechTimeout: customTimeout,
-	  speechModel: customSpeechModel,
-	  actionOnEmptyResult : 'true'
+	    speechModel: customSpeechModel,
+	    actionOnEmptyResult : 'true'
     });
 	
 
