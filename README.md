@@ -1,7 +1,6 @@
 # tie-api-example-twilio-ivr
 This example connector allows you to establish a phone call with a Teneo bot. The connector makes your Teneo bot available via Twilio IVR (Interactive Voice Response). This guide will take you through the steps of setting a new Twilio phone number and deploying the connector to respond to events sent by Twilio.
 
-
 ## Prerequisites
 ### Https
 When running the connector locally, making the connector available via https is preferred. Ngrok is recommended for this.
@@ -79,3 +78,9 @@ By default, end of speech is detected automatically. The `twilio_customTimeout` 
 
 ### twilio_endCall
 If the output parameter `twilio_endCall` with the value `true` exists, the call will be ended.
+
+### twilio_speechModel
+If the output parameter `twilio_speechModel` exists, it will be used to set a custom speech model. Allowed values are: 'default', 'numbers_and_commands' and 'phone_call'.
+
+### twilio_inputType
+If the output parameter `twilio_inputType` exists, it will be used to set a custom input type. Allowed values are: 'dtmf', 'speech' or 'dtmf speech'. DTMF allows the end user to enter a number using the keypad of the phone. User must press # to mark end of the input.
