@@ -140,10 +140,10 @@ function sendTwilioMessage(teneoResponse, res) {
     response = twiml.gather({
       language: language_STT,
       hints: customVocabulary,
-	    input: customInputType,
+      input: customInputType,
       speechTimeout: customTimeout,
-	    speechModel: customSpeechModel,
-	    actionOnEmptyResult : 'true'
+      speechModel: customSpeechModel,
+      actionOnEmptyResult : 'true'
     });
 	
 
