@@ -83,4 +83,4 @@ If the output parameter `twilio_endCall` with the value `true` exists, the call 
 If the output parameter `twilio_speechModel` exists, it will be used to set a custom speech model. Allowed values are: 'default', 'numbers_and_commands' and 'phone_call'.
 
 ### twilio_inputType
-If the output parameter `twilio_inputType` exists, it will be used to set a custom input type. Allowed values are: 'dtmf', 'speech' or 'dtmf speech'. DTMF allows the end user to enter a number using the keypad of the phone. User must press # to mark end of the input.
+If the output parameter `twilio_inputType` exists, it will be used to set a custom input type. Allowed values are: 'dtmf', 'speech' or 'dtmf speech'. DTMF allows the end user to enter a number using the keypad of the phone. User must press # to mark end of the input. The digits entered by the user will be sent to engine using an input parameter `digits`.
