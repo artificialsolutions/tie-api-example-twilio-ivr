@@ -81,13 +81,23 @@ function handleTwilioMessages(sessionHandler) {
 
       // get transcipt of user's spoken response
       let userInput = '';
+      let confidence = '';
+      let callerCountry = '';
       if (post.CallStatus = 'in-progress' && post.SpeechResult) {
         userInput = post.SpeechResult;
+        if (post.Confidence) {
+          confidence = post.Confidence;
+        }
+        if (post.CallerCountry) {
+          callerCountry = post.CallerCountry;
+        }
       }
       console.log(`userInput: ${userInput}`);
+      console.log(`confidence: ${confidence}`);
+      console.log(`callerCountry: ${callerCountry}`);
 
       // send input to engine using stored sessionid and retreive response
-      const teneoResponse = await teneoApi.sendInput(teneoSessionId, { 'text': userInput, 'channel': 'twilio', 'digits': digitsCaptured});
+      const teneoResponse = await teneoApi.sendInput(teneoSessionId, { 'text': userInput, 'channel': 'twilio', 'digits': digitsCaptured, 'twilioConfidence' : confidence, 'twilioCallerCountry' : callerCountry});
       console.log(`teneoResponse: ${teneoResponse.output.text}`)
 
       // store engine sessionid for this caller
