@@ -29,8 +29,8 @@ const {
 } = process.env;
 const port = PORT || 1337;
 const teneoApi = TIE.init(TENEO_ENGINE_URL);
-const language_STT = LANGUAGE_STT || 'en-US'; // See: https://www.twilio.com/docs/voice/twiml/gather#languagetags
-const language_TTS = LANGUAGE_TTS || 'Polly.Joanna'; // See: https://www.twilio.com/docs/voice/twiml/say/text-speech#amazon-polly
+let language_STT = LANGUAGE_STT || 'en-US'; // See: https://www.twilio.com/docs/voice/twiml/gather#languagetags
+let language_TTS = LANGUAGE_TTS || 'Polly.Joanna'; // See: https://www.twilio.com/docs/voice/twiml/say/text-speech#amazon-polly
 
 console.log("LANGUAGE_STT: " + LANGUAGE_STT)
 console.log("LANGUAGE_TTS: " + LANGUAGE_TTS)
@@ -142,6 +142,11 @@ function sendTwilioMessage(teneoResponse, res) {
   if (teneoResponse.output.parameters.twilio_inputType) {
     customInputType = teneoResponse.output.parameters.twilio_inputType;
   }  
+
+  if(teneoResponse.output.parameters.twilio_sttLanguage) {
+    language_STT = teneoResponse.output.parameters.twilio_sttLanguage;
+    console.log("langauge_STT: " + language_STT);
+  }
 
   // If the output parameter 'twilio_endCall' exists, the call will be ended
   if (teneoResponse.output.parameters.twilio_endCall == 'true') {
