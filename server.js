@@ -61,6 +61,8 @@ function handleTwilioMessages(sessionHandler) {
 
       // parse the body
       const post = qs.parse(body);
+      console.log("Printing body of post:");
+      console.log(post)
 
       // get the caller id
       const callSid = post.CallSid;
@@ -79,17 +81,18 @@ function handleTwilioMessages(sessionHandler) {
         console.log('No digits captured');
       }
 
+      let callerCountry = '';
+      if (post.CallerCountry) {
+        callerCountry = post.CallerCountry;
+      }
+
       // get transcipt of user's spoken response
       let userInput = '';
       let confidence = '';
-      let callerCountry = '';
       if (post.CallStatus = 'in-progress' && post.SpeechResult) {
         userInput = post.SpeechResult;
         if (post.Confidence) {
           confidence = post.Confidence;
-        }
-        if (post.CallerCountry) {
-          callerCountry = post.CallerCountry;
         }
       }
       console.log(`userInput: ${userInput}`);
