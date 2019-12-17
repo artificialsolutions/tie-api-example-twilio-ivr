@@ -67,6 +67,21 @@ Next, we need to make the connector available via https. We'll use [ngrok](https
 
 That's it! Call your Twilio number with your phone, and speak to your bot!
 
+## Engine input parameters
+The connector will send the following input parameters along with the user input to the Teneo engine:
+
+### channel
+The input parameter `channel` with value `twilio` is included in each request. This allows you to add channel specfic optimisations to your bot.
+
+### digits
+In case the user switched to `dtmf` input, the digits entered are provided in the input parameter `digits`.
+
+### twilioConfidence
+The `twilioConfidence` input parameter contains the confidence score of the Speech To Text engine used by Twilio.
+
+### twilioCallerCountry
+The input parameter `twilioCallerCountry` contains the country code of the caller. You can use this to improve the Speech to Text model, for example by adding an output parameter `twilio_sttLanguage` with value `en-GB` to responses for callers calling from the UK.
+
 ## Engine output parameters
 The connector will check for the following output parameters in an output to send specific data to Twillo:
 
@@ -81,6 +96,9 @@ If the output parameter `twilio_endCall` with the value `true` exists, the call 
 
 ### twilio_speechModel
 If the output parameter `twilio_speechModel` exists, it will be used to set a custom speech model. Allowed values are: 'default', 'numbers_and_commands' and 'phone_call'.
+
+### twilio_sttLanguage
+If provided, will override the environment variable `LANGUAGE_STT`.
 
 ### twilio_inputType
 If the output parameter `twilio_inputType` exists, it will be used to set a custom input type. Allowed values are: 'dtmf', 'speech' or 'dtmf speech'. DTMF allows the end user to enter a number using the keypad of the phone. User must press # to mark end of the input. The digits entered by the user will be sent to engine using an input parameter `digits`.
