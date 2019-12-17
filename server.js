@@ -29,8 +29,8 @@ const {
 } = process.env;
 const port = PORT || 1337;
 const teneoApi = TIE.init(TENEO_ENGINE_URL);
-const language_STT = LANGUAGE_STT || 'en-US'; // See: https://www.twilio.com/docs/voice/twiml/gather#languagetags
-const language_TTS = LANGUAGE_TTS || 'Polly.Joanna'; // See: https://www.twilio.com/docs/voice/twiml/say/text-speech#amazon-polly
+let language_STT = LANGUAGE_STT || 'en-US'; // See: https://www.twilio.com/docs/voice/twiml/gather#languagetags
+let language_TTS = LANGUAGE_TTS || 'Polly.Joanna'; // See: https://www.twilio.com/docs/voice/twiml/say/text-speech#amazon-polly
 
 console.log("LANGUAGE_STT: " + LANGUAGE_STT)
 console.log("LANGUAGE_TTS: " + LANGUAGE_TTS)
@@ -79,15 +79,26 @@ function handleTwilioMessages(sessionHandler) {
         console.log('No digits captured');
       }
 
+      let callerCountry = '';
+      if (post.CallerCountry) {
+        callerCountry = post.CallerCountry;
+      }
+
       // get transcipt of user's spoken response
       let userInput = '';
+      let confidence = '';
       if (post.CallStatus = 'in-progress' && post.SpeechResult) {
         userInput = post.SpeechResult;
+        if (post.Confidence) {
+          confidence = post.Confidence;
+        }
       }
       console.log(`userInput: ${userInput}`);
+      console.log(`confidence: ${confidence}`);
+      console.log(`callerCountry: ${callerCountry}`);
 
       // send input to engine using stored sessionid and retreive response
-      const teneoResponse = await teneoApi.sendInput(teneoSessionId, { 'text': userInput, 'channel': 'twilio', 'digits': digitsCaptured});
+      const teneoResponse = await teneoApi.sendInput(teneoSessionId, { 'text': userInput, 'channel': 'twilio', 'digits': digitsCaptured, 'twilioConfidence' : confidence, 'twilioCallerCountry' : callerCountry});
       console.log(`teneoResponse: ${teneoResponse.output.text}`)
 
       // store engine sessionid for this caller
@@ -133,9 +144,20 @@ function sendTwilioMessage(teneoResponse, res) {
     customInputType = teneoResponse.output.parameters.twilio_inputType;
   }  
 
+  if(teneoResponse.output.parameters.twilio_sttLanguage) {
+    language_STT = teneoResponse.output.parameters.twilio_sttLanguage;
+    console.log("langauge_STT: " + language_STT);
+  }
+
   // If the output parameter 'twilio_endCall' exists, the call will be ended
   if (teneoResponse.output.parameters.twilio_endCall == 'true') {
+
+    twiml.say({
+      voice: language_TTS
+    },teneoResponse.output.text);
+
     response = twiml.hangup();
+
   } else {
     response = twiml.gather({
       language: language_STT,
@@ -145,7 +167,6 @@ function sendTwilioMessage(teneoResponse, res) {
       speechModel: customSpeechModel,
       actionOnEmptyResult : 'true'
     });
-	
 
     response.say({
       voice: language_TTS
