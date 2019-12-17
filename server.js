@@ -151,7 +151,13 @@ function sendTwilioMessage(teneoResponse, res) {
 
   // If the output parameter 'twilio_endCall' exists, the call will be ended
   if (teneoResponse.output.parameters.twilio_endCall == 'true') {
+
+    twiml.say({
+      voice: language_TTS
+    },teneoResponse.output.text);
+
     response = twiml.hangup();
+
   } else {
     response = twiml.gather({
       language: language_STT,
@@ -161,7 +167,6 @@ function sendTwilioMessage(teneoResponse, res) {
       speechModel: customSpeechModel,
       actionOnEmptyResult : 'true'
     });
-	
 
     response.say({
       voice: language_TTS
