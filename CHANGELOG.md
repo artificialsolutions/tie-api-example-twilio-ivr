@@ -1,3 +1,8 @@
+# v.1.3.1
+## 12/10/2020
+1. [](#improved)
+    * Updated dependencies. 
+
 # v.1.3.0
 ## 17/12/2019
 

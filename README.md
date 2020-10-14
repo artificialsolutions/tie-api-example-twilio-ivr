@@ -62,7 +62,7 @@ Next, we need to make the connector available via https. We'll use [ngrok](https
 3. Follow the instruction to obtain your phone number (the instruction may differ per region).
 4. Click on "Manage Numbers".
 5. Click your number so you can configure it.
-6. Under "Voice & Fax" -> "A call comes in" set the webhook to the <mark>Webhook URL</mark> you copied earlier.
+6. Under "Voice" -> "A call comes in" set the webhook to the <mark>Webhook URL</mark> you copied earlier.
 
 
 That's it! Call your Twilio number with your phone, and speak to your bot!
