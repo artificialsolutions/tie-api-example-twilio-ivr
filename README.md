@@ -14,6 +14,9 @@ Below you will find two ways to run the this connector. The first way is by [run
 The second way is to [run the connector locally](#running-the-connector-locally) or to deploy it on a server of your choice. This preferred if you're familiar with node.js development and want to have a closer look at the code and plan to enhance or modify it.
 
 ### Running the connector on Heroku
+
+**Note: Starting November 28, 2022, free Heroku Dynos, free Heroku Postgres, and free Heroku Data for Redis® plans will no longer be available.**
+
 Click the button below to deploy the connector to Heroku:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg?classes=heroku)](https://heroku.com/deploy?template=https://github.com/artificialsolutions/tie-api-example-twilio-ivr)
